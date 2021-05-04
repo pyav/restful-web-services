@@ -1,3 +1,3 @@
 # restful-web-services
-
-Spring Boot application
+This repository is meant for learning and experimenting in Spring Boot and
+Microservices.

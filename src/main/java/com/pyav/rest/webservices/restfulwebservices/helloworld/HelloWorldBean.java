@@ -1,8 +1,24 @@
-Unstaged changes after reset:
-D	src/main/java/com/pyav/rest/webservices/restfulwebservices/HelloWorldBean.java
-M	src/main/java/com/pyav/rest/webservices/restfulwebservices/helloworld/HelloWorldBean.java
-M	src/main/java/com/pyav/rest/webservices/restfulwebservices/helloworld/HelloWorldController.java
-M	src/main/java/com/pyav/rest/webservices/restfulwebservices/user/User.java
-M	target/classes/META-INF/maven/com.pyav.restful-web-services/restful-web-services/pom.properties
-D	target/classes/com/pyav/rest/webservices/restfulwebservices/HelloWorldBean.class
-D	target/classes/com/pyav/rest/webservices/restfulwebservices/HelloWorldController.class
+package com.pyav.rest.webservices.restfulwebservices.helloworld;
+
+public class HelloWorldBean {
+
+	private String message;
+
+	public HelloWorldBean(String message) {
+		this.setMessage(message);
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return "HelloWorldBean [message=" + message + "]";
+	}
+
+}

@@ -1,9 +1,32 @@
-Unstaged changes after reset:
-D	src/main/java/com/pyav/rest/webservices/restfulwebservices/HelloWorldBean.java
-D	src/main/java/com/pyav/rest/webservices/restfulwebservices/HelloWorldController.java
-M	src/main/java/com/pyav/rest/webservices/restfulwebservices/helloworld/HelloWorldBean.java
-M	src/main/java/com/pyav/rest/webservices/restfulwebservices/helloworld/HelloWorldController.java
-M	src/main/java/com/pyav/rest/webservices/restfulwebservices/user/User.java
-M	target/classes/META-INF/maven/com.pyav.restful-web-services/restful-web-services/pom.properties
-D	target/classes/com/pyav/rest/webservices/restfulwebservices/HelloWorldBean.class
-D	target/classes/com/pyav/rest/webservices/restfulwebservices/HelloWorldController.class
+package com.pyav.rest.webservices.restfulwebservices.helloworld;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWorldController {
+
+	@RequestMapping(method = RequestMethod.GET, path = "/hello-world")
+	public String helloWorld() {
+		return "Hello World";
+	}
+
+	@GetMapping(path = "/hello-world-get")
+	public String helloWorldGet() {
+		return "Hello World Get";
+	}
+
+	@GetMapping(path = "/hello-world-bean")
+	public HelloWorldBean helloWorldBean() {
+		return new HelloWorldBean("hello-world-bean");
+	}
+
+	@GetMapping(path = "/hello-world/{name}")
+	public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
+		return new HelloWorldBean(String.format("Hello World, %s", name));
+	}
+
+}

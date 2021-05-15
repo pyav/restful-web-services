@@ -5,7 +5,7 @@ Microservices.
 GET call:
 --------
 curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
-
+```json
 [
     {
         "birthDate": "2021-05-15T16:25:14.953+00:00",
@@ -23,3 +23,4 @@ curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
         "name": "anand"
     }   
 ]
+```

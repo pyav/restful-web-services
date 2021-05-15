@@ -4,7 +4,7 @@ Microservices.
 
 GET call:
 --------
-curl http://localhost:8080/users -u <user>:<password> | python -m json.tool
+curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
 
 [
     {

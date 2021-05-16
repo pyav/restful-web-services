@@ -50,9 +50,7 @@ curl http://localhost:8080/users | python -m json.tool
 ## POST call:
    ---------
 curl -v  -d '{"name":"verma", "birthDate":"2021-05-16T13:34:59.485+00:00"}' http://localhost:8080/users -H 'Content-Type: application/json' -X POST
-.
-< HTTP/1.1 200 
-.
+
 ## Verification:
    ------------
 curl http://localhost:8080/users | python -m json.tool

@@ -24,7 +24,7 @@ curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
     }   
 ]
 ```
-After disabling csrf () as given in WebSecurityConfig.java file:
+After disabling csrf (Cross Site Request Forgery) as given in WebSecurityConfig.java file:
 
 curl http://localhost:8080/users | python -m json.tool
 ```json

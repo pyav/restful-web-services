@@ -26,7 +26,10 @@ public class UserResource {
 	}
 
 	@PostMapping("/users")
+	//@CrossOrigin(origins = "*")
+	//@Bean(name="entityManagerFactory")
 	public void createUser(@RequestBody User user) {
+		System.out.println("Anand POST /users");
 		service.save(user);
 	}
 }

@@ -2,7 +2,8 @@
 This repository is meant for learning and experimenting in Spring Boot and
 Microservices.
 
-##GET call:
+## GET call:
+   --------
 curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
 ```json
 [
@@ -46,16 +47,16 @@ curl http://localhost:8080/users | python -m json.tool
 ]
 ```
 
-POST call:
----------
+## POST call:
+   ---------
 curl -v  -d '{"name":"verma", "birthDate":"2021-05-16T13:34:59.485+00:00"}' http://localhost:8080/users -H 'Content-Type: application/json' -X POST
 ***
 .
 < HTTP/1.1 200 
 .
 ***
-Verification:
-------------
+## Verification:
+   ------------
 curl http://localhost:8080/users | python -m json.tool
 ```json
 [

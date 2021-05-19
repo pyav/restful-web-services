@@ -1,7 +1,10 @@
 package com.pyav.rest.webservices.restfulwebservices.user;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,9 @@ public class UserResource {
 
 	@Autowired
 	private UserDaoService service;
+
+	Map<Integer, List<Integer>> userIdPostIdsMap = new HashMap<Integer, List<Integer>>();
+	Map<Integer, String> postIdPostMap = new HashMap<Integer, String>();
 
 	@GetMapping(path = "/users")
 	public List<User> getAllUsers() {
@@ -42,4 +48,37 @@ public class UserResource {
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
+
+	// GET /users/{id}/posts
+	// POST /users/{id}/posts
+	// GET /users/{id}/posts/{post_id}
+
+	@GetMapping("/users/{id}/posts")
+	public List<String> getPosts(@PathVariable Integer id) {
+		if (service.findOne(id) == null) {
+			throw new UserNotFoundException("id - " + id + " not found");
+		}
+
+		List<Integer> postIds = userIdPostIdsMap.get(id);
+		
+	}
+
+	@PostMapping("/users/{id}/posts")
+	public void addPost(@PathVariable Integer id, @RequestBody String post) {
+		if (service.findOne(id) == null) {
+			throw new UserNotFoundException("id - " + id + " not found");
+		}
+
+		List<String> posts = userPostsMap.get(id);
+		posts.add(post);
+		userPostsMap.put(id, posts);
+	}
+
+	@GetMapping("/users/{id}/posts/{post_id}")
+	public String getPost(@PathVariable Integer id, @PathVariable Integer postId) {
+		if () {
+			
+		}
+	}
+
 }

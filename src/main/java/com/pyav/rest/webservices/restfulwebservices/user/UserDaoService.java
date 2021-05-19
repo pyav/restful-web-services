@@ -1,6 +1,7 @@
 package com.pyav.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,4 +39,15 @@ public class UserDaoService {
 		return user;
 	}
 
+	public User deleteById(int id) {
+		Iterator<User> itr = users.iterator();
+		while (itr.hasNext()) {
+			User user = itr.next();
+			if (user.getId() == id) {
+				itr.remove();
+				return user;
+			}
+		}
+		return null;
+	}
 }

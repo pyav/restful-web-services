@@ -53,7 +53,10 @@ public class UserResource {
 
 	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable Integer id) {
-
+		User user = service.deleteById(id);
+		if (null == user) {
+			throw new UserNotFoundException("id - " + id);
+		}
 	}
 
 	@GetMapping("/users/{id}/posts")
@@ -74,7 +77,7 @@ public class UserResource {
 	@PostMapping("/users/{id}/posts")
 	public void addPost(@PathVariable Integer id, @RequestBody String post) {
 		if (service.findOne(id) == null) {
-			throw new UserNotFoundException("id - " + id + " not found");
+			throw new UserNotFoundException("id - " + id);
 		}
 
 		String uuid = UUID.randomUUID().toString();

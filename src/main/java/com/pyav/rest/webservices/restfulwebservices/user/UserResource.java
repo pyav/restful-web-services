@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class UserResource {
 	@Autowired
 	private UserDaoService service;
 
-	Map<Integer, List<Integer>> userIdPostIdsMap = new HashMap<Integer, List<Integer>>();
-	Map<Integer, String> postIdPostMap = new HashMap<Integer, String>();
+	Map<Integer, List<String>> userIdPostIdsMap = new HashMap<Integer, List<String>>();
+	Map<String, String> postIdPostMap = new HashMap<String, String>();
 
 	@GetMapping(path = "/users")
 	public List<User> getAllUsers() {
@@ -49,18 +50,19 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	// GET /users/{id}/posts
-	// POST /users/{id}/posts
-	// GET /users/{id}/posts/{post_id}
-
 	@GetMapping("/users/{id}/posts")
 	public List<String> getPosts(@PathVariable Integer id) {
 		if (service.findOne(id) == null) {
 			throw new UserNotFoundException("id - " + id + " not found");
 		}
 
-		List<Integer> postIds = userIdPostIdsMap.get(id);
-		
+		List<String> postIds = userIdPostIdsMap.get(id);
+		List<String> posts = new ArrayList<String>();
+		for (String i : postIds) {
+			posts.add(postIdPostMap.get(i));
+		}
+
+		return posts;
 	}
 
 	@PostMapping("/users/{id}/posts")
@@ -69,16 +71,28 @@ public class UserResource {
 			throw new UserNotFoundException("id - " + id + " not found");
 		}
 
-		List<String> posts = userPostsMap.get(id);
-		posts.add(post);
-		userPostsMap.put(id, posts);
+		String uuid = UUID.randomUUID().toString();
+		postIdPostMap.put(uuid, post);
+		List<String> posts = userIdPostIdsMap.get(id);
+		posts.add(uuid);
+		userIdPostIdsMap.put(id, posts);
 	}
 
 	@GetMapping("/users/{id}/posts/{post_id}")
 	public String getPost(@PathVariable Integer id, @PathVariable Integer postId) {
-		if () {
-			
+		if (service.findOne(id) == null) {
+			throw new UserNotFoundException("id - " + id + " not found");
 		}
+		List<String> postsForUser = userIdPostIdsMap.get(id);
+		if (!postsForUser.contains(String.valueOf(postId))) {
+			throw new PostNotFoundException("Post id - " + postId + " not found");
+		}
+
+		if (!postIdPostMap.containsKey(String.valueOf(postId))) {
+			throw new PostNotFoundException("Post id - " + postId + " not found");
+		}
+
+		return postIdPostMap.get(String.valueOf(postId));
 	}
 
 }

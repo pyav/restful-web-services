@@ -10,6 +10,9 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +37,19 @@ public class UserResource {
 	}
 
 	@GetMapping(path = "/users/{id}")
-	public User getOneUser(@PathVariable Integer id) {
+	public EntityModel<User> getOneUser(@PathVariable Integer id) {
 		User user = service.findOne(id);
 		if (null == user) {
 			throw new UserNotFoundException("id - " + id + " not found");
 		}
-		return user;
+
+		// HATEOAS - Hypermedia As The Engine Of Application State
+		// Resource<User> resource = new Resource<User> (user);
+		EntityModel<User> resource = EntityModel.of(user);
+		WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
+		resource.add(linkTo.withRel("all-users"));
+
+		return resource;
 	}
 
 	@PostMapping("/users")

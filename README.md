@@ -75,4 +75,17 @@ curl http://localhost:8080/users | python -m json.tool
     }
 ]
 ```
-
+## GET call: (for HATEOAS)
+curl http://localhost:8080/users/1 | python -m json.tool
+```json
+{
+    "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/users"
+        }
+    },
+    "birthDate": "2021-05-20T16:16:32.407+00:00",
+    "id": 1,
+    "name": "pyav"
+}
+```

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,7 +45,7 @@ public class UserResource {
 	@PostMapping("/users")
 	// @CrossOrigin(origins = "*")
 	// @Bean(name="entityManagerFactory")
-	public ResponseEntity<Object> createUser(@RequestBody User user) {
+	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		System.out.println("Anand POST /users");
 		User savedUser = service.save(user);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())

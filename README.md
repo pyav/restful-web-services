@@ -94,5 +94,9 @@ First add the dependency for springdoc-openapi in pom.xml and once it gets
 downloaded, rerun the application and from the browser, call the url: http://localhost:8080/swagger-ui.html
 This will redirect to index.html and you would see the swagger UI for the
 endpoints that you have as part of the application.
-
+## OpenAPI documentation
+The OpenAPI documentation that gets generated and displayed on the swagger ui,
+can be found in api-docs.json file. This file is created manually and the
+contents can be found from swagger-ui itself by clicking on the link at
+"/v3/api-docs".
 

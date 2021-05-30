@@ -90,7 +90,7 @@ curl http://localhost:8080/users/1 | python -m json.tool
 }
 ```
 ## Swagger-ui
-First add the dependency for springdoc-openapi in pom.xml and once it get
+First add the dependency for springdoc-openapi in pom.xml and once it gets
 downloaded, rerun the application and from the browser, call the url: http://localhost:8080/swagger-ui.html
 This will redirect to index.html and you would see the swagger UI for the
 endpoints that you have as part of the application.

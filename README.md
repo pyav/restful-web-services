@@ -99,4 +99,6 @@ The OpenAPI documentation that gets generated and displayed on the swagger ui,
 can be found in api-docs.json file. This file is created manually and the
 contents can be found from swagger-ui itself by clicking on the link at
 "/v3/api-docs".
-
+## Actuator url
+Following is the actuator url which can be used to monitor health of the application, resources, etc.:
+http://localhost:8080/actuator

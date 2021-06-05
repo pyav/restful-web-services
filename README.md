@@ -102,3 +102,7 @@ contents can be found from swagger-ui itself by clicking on the link at
 ## Actuator url
 Following is the actuator url which can be used to monitor health of the application, resources, etc.:
 http://localhost:8080/actuator
+## HAL Explorer
+HAL Explorer helps in exploring the APIs in a visualized and way.
+The url http://localhost:8080/explorer/index.html#uri=/ redirects to http://localhost:8080/explorer/index.html#uri=/
+

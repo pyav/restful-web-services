@@ -3,6 +3,7 @@ package com.pyav.rest.webservices.restfulwebservices.filtering;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+// Static filtering
 //@JsonIgnoreProperties(value={"field2", "field3"})
 public class SomeBean {
 	private String field1;

@@ -15,4 +15,14 @@ public class PersonVersioningController {
 	public PersonV2 personV2() {
 		return new PersonV2(new Name("Anand", "pyav"));
 	}
+	
+	@GetMapping(value="/person/param", params="version=1")
+	public PersonV1 paramV1() {
+		return new PersonV1("Anand pyav");
+	}
+
+	@GetMapping(value="/person/param", params = "version=2")
+	public PersonV2 paramV2() {
+		return new PersonV2(new Name("Anand", "pyav"));
+	}
 }

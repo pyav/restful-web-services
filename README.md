@@ -105,4 +105,15 @@ http://localhost:8080/actuator
 ## HAL Explorer
 HAL Explorer helps in exploring the APIs in a visualized and way.
 The url http://localhost:8080/explorer/index.html#uri=/ redirects to http://localhost:8080/explorer/index.html#uri=/
+## Versioning
+Following is the command to verify one of the ways of versioning in the url:
+curl http://localhost:8080/person/produces -H "Accept: application/v2+json" | python3 -m json.tool
+```json
+{
+    "name": {
+        "firstName": "Anand",
+        "lastName": "pyav"
+    }
+}
+```
 

@@ -36,4 +36,14 @@ public class PersonVersioningController {
 		return new PersonV2(new Name("Anand", "pyav"));
 	}
 	
+	@GetMapping(value="/person/produces", produces = "application/v1+json")
+	public PersonV1 producesV1() {
+		return new PersonV1("Anand pyav");
+	}
+
+	@GetMapping(value="/person/produces", produces = "application/v2+json")
+	public PersonV2 producesV2() {
+		return new PersonV2(new Name("Anand", "pyav"));
+	}
+	
 }

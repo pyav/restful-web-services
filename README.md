@@ -121,8 +121,8 @@ curl http://localhost:8080/person/produces -H "Accept: application/v2+json" | py
 2. (Custom) headers versioning  
 3. URI versioning  
 4. Request parameter versioning  
-<br />
-Factors:  
+
+### Factors to consider for tradeoff:
 1. URI Pollution  
 2. Misuse of HTTP headers  
 3. Caching  

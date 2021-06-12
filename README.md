@@ -128,3 +128,10 @@ curl http://localhost:8080/person/produces -H "Accept: application/v2+json" | py
 3. Caching  
 4. Browser supportability  
 5. Documentation  
+
+## Basic authentication
+To enable basic authentication, add the artifact "spring-boot-starter-security"
+to pom.xml and comment the csrf disable code in WebSecurityConfig.java. Once
+the code is built and run, the password will be printed on the build output
+window. The default user is 'user'.
+

@@ -141,3 +141,16 @@ relevant artifact.
 
 http://localhost:8080/h2-console
 
+NOTE: If "spring-boot-starter-security" is present in pom.xml, the sql box
+won't be shown on the browser. Therefore, following line needs to be added in
+the configure method of WebSecurityConfig class:
+
+http.headers().frameOptions().disable();
+
+The second method is to comment out the security dependency in the pom.xml
+file, comment out the code in WebSecurityConfig.java file and rerun the
+project.
+
+From the sql box in the h2-console, we can run any sql command to verify the
+database entry, for example, "select * from user". This will print the values
+we have insert from a sql file to the table, say from data.sql file.

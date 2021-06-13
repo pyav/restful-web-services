@@ -154,3 +154,28 @@ project.
 From the sql box in the h2-console, we can run any sql command to verify the
 database entry, for example, "select * from user". This will print the values
 we have insert from a sql file to the table, say from data.sql file.
+
+## JPA database
+The file UserJPAResource.java is added to show the JPA APIs. Here is a sample
+command and it's output to showcase the h2 in-memory database:
+```json
+curl http://localhost:8080/jpa/users | python3 -m json.tool
+
+[
+    {
+        "id": 1,
+        "name": "AB",
+        "birthDate": "2021-06-12T18:30:00.000+00:00"
+    },
+    {
+        "id": 2,
+        "name": "Jill",
+        "birthDate": "2021-06-12T18:30:00.000+00:00"
+    },
+    {
+        "id": 3,
+        "name": "Jack",
+        "birthDate": "2021-06-12T18:30:00.000+00:00"
+    }
+]
+```

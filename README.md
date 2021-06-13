@@ -135,3 +135,9 @@ to pom.xml and comment the csrf disable code in WebSecurityConfig.java. Once
 the code is built and run, the password will be printed on the build output
 window. The default user is 'user'.
 
+## H2 console (JDBC):
+The url for h2 console is given below. Please also check the pom.xml for
+relevant artifact.
+
+http://localhost:8080/h2-console
+

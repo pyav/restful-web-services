@@ -158,9 +158,9 @@ we have insert from a sql file to the table, say from data.sql file.
 ## JPA database
 The file UserJPAResource.java is added to show the JPA APIs. Here is a sample
 command and it's output to showcase the h2 in-memory database:
-```json
-curl http://localhost:8080/jpa/users | python3 -m json.tool
 
+curl http://localhost:8080/jpa/users | python3 -m json.tool
+```json
 [
     {
         "id": 1,
@@ -178,4 +178,18 @@ curl http://localhost:8080/jpa/users | python3 -m json.tool
         "birthDate": "2021-06-12T18:30:00.000+00:00"
     }
 ]
+```
+curl http://localhost:8080/jpa/users/1 | python3 -m json.tool
+```json
+
+{
+    "id": 1,
+    "name": "AB",
+    "birthDate": "2021-06-12T18:30:00.000+00:00",
+    "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/jpa/users"
+        }
+    }
+}
 ```

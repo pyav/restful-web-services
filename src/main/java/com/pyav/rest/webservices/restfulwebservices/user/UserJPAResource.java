@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -41,14 +42,14 @@ public class UserJPAResource {
 
 	@GetMapping(path = "/jpa/users/{id}")
 	public EntityModel<User> getOneUser(@PathVariable Integer id) {
-		User user = service.findOne(id);
-		if (null == user) {
+		Optional<User> user = userRepository.findById(id);
+		if (!user.isPresent()) {
 			throw new UserNotFoundException("id - " + id + " not found");
 		}
 
 		// HATEOAS - Hypermedia As The Engine Of Application State
-		// Resource<User> resource = new Resource<User> (user);
-		EntityModel<User> resource = EntityModel.of(user);
+		//Resource<User> resource = new Resource<User> (user.get());
+		EntityModel<User> resource = EntityModel.of(user.get());
 		WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllUsers());
 		resource.add(linkTo.withRel("all-users"));
 
@@ -59,7 +60,6 @@ public class UserJPAResource {
 	// @CrossOrigin(origins = "*")
 	// @Bean(name="entityManagerFactory")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-		System.out.println("Anand POST /users");
 		User savedUser = service.save(user);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
 				.toUri();

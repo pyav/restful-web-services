@@ -27,9 +27,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class UserJPAResource {
 
 	@Autowired
-	private UserDaoService service;
-
-	@Autowired
 	private UserRepository userRepository;
 
 	Map<Integer, List<String>> userIdPostIdsMap = new HashMap<Integer, List<String>>();

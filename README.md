@@ -198,20 +198,32 @@ After adding the UserRepository interface which is an extension of
 JpaRepository and using it in UserJPAResource.java file, here is the delete
 curl call to delete a user:
 
-curl -X "DELETE" http://localhost:8080/users/3 
+curl -X DELETE http://localhost:8080/jpa/users/100
+
+curl -v  -d '{"name":"pyav", "birthDate":"2021-05-16T13:34:59.485+00:00"}' http://localhost:8080/jpa/users -H 'Content-Type: application/json' -X POST
 ### Validation for the delete
-curl http://localhost:8080/users | python3 -m json.tool
+curl http://localhost:8080/jpa/users | python3 -m json.tool
 ```json
 [
     {
-        "id": 1,
+        "id": 2,
         "name": "pyav",
-        "birthDate": "2021-06-23T15:27:41.879+00:00"
+        "birthDate": "2021-05-16T13:34:59.485+00:00"
     },
     {
-        "id": 2,
-        "name": "just-another-user1",
-        "birthDate": "2021-06-23T15:27:41.879+00:00"
+        "id": 3,
+        "name": "pyav",
+        "birthDate": "2021-05-16T13:34:59.485+00:00"
+    },
+    {
+        "id": 200,
+        "name": "Jill",
+        "birthDate": "2021-06-22T18:30:00.000+00:00"
+    },
+    {
+        "id": 300,
+        "name": "Jack",
+        "birthDate": "2021-06-22T18:30:00.000+00:00"
     }
 ]
 ```

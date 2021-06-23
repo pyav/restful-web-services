@@ -60,7 +60,7 @@ public class UserJPAResource {
 	// @CrossOrigin(origins = "*")
 	// @Bean(name="entityManagerFactory")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
-		User savedUser = service.save(user);
+		User savedUser = userRepository.save(user);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();

@@ -256,3 +256,12 @@ The verification can be done from h2 console by using the following command:
 ```
 select * from POST where user_id='200'
 ```
+## Richardson Maturity Model
+### Level 0:
+Exposing SOAP web services in REST style. For example, ```http://<server>/getPosts```
+### Level 1:
+Expose resources with proper URI but improper user of HTTP methods.
+### Level 2:
+Level 1 + proper user of HTTP methods.
+### Level 3:
+Level 2 + HATEOAS i.e. Data + Next possible actions

@@ -232,6 +232,10 @@ curl http://localhost:8080/jpa/users | python3 -m json.tool
 ```
 ## POST call
 Here is a POST call demo which creates a post for a user:
+```
 curl http://localhost:8080/jpa/users/200/posts -XPOST -d'{ "description": "My Post New" }' -H 'Content-Type: application/json'
+```
 The verification can be done from h2 console by using the following command:
-```select * from POST where user_id='200'```
+```
+select * from POST where user_id='200'
+```

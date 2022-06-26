@@ -6,7 +6,9 @@ Microservices.
 Run the Spring Boot application from RestfulWebServicesApplication.java file. This can be done from the Run-dropdown in IDE.
 
 ## GET call:
+```
 curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
+```
 ```json
 [
     {
@@ -28,7 +30,9 @@ curl http://localhost:8080/users -u \<user\>:\<password\> | python -m json.tool
 ```
 After disabling csrf (Cross Site Request Forgery) as given in WebSecurityConfig.java file:
 
+```
 curl http://localhost:8080/users | python -m json.tool
+```
 ```json
 [
     {
@@ -50,10 +54,14 @@ curl http://localhost:8080/users | python -m json.tool
 ```
 
 ## POST call:
+```
 curl -v  -d '{"name":"verma", "birthDate":"2021-05-16T13:34:59.485+00:00"}' http://localhost:8080/users -H 'Content-Type: application/json' -X POST
+```
 
 ## Verification:
+```
 curl http://localhost:8080/users | python -m json.tool
+```
 ```json
 [
     {
@@ -79,7 +87,9 @@ curl http://localhost:8080/users | python -m json.tool
 ]
 ```
 ## GET call: (for HATEOAS)
+```
 curl http://localhost:8080/users/1 | python -m json.tool
+```
 ```json
 {
     "_links": {
@@ -110,7 +120,9 @@ HAL Explorer helps in exploring the APIs in a visualized and way.
 The url http://localhost:8080/explorer/index.html#uri=/ redirects to http://localhost:8080/explorer/index.html#uri=/
 ## Versioning
 Following is the command to verify one of the ways of versioning in the url:
+```
 curl http://localhost:8080/person/produces -H "Accept: application/v2+json" | python3 -m json.tool
+```
 ```json
 {
     "name": {
@@ -161,8 +173,9 @@ we have insert from a sql file to the table, say from data.sql file.
 ## JPA database
 The file UserJPAResource.java is added to show the JPA APIs. Here is a sample
 command and it's output to showcase the h2 in-memory database:
-
+```
 curl http://localhost:8080/jpa/users | python3 -m json.tool
+```
 ```json
 [
     {
@@ -182,7 +195,9 @@ curl http://localhost:8080/jpa/users | python3 -m json.tool
     }
 ]
 ```
+```
 curl http://localhost:8080/jpa/users/1 | python3 -m json.tool
+```
 ```json
 
 {
@@ -200,10 +215,10 @@ curl http://localhost:8080/jpa/users/1 | python3 -m json.tool
 After adding the UserRepository interface which is an extension of
 JpaRepository and using it in UserJPAResource.java file, here is the delete
 curl call to delete a user:
-
+```
 curl -X DELETE http://localhost:8080/jpa/users/100
-
 curl -v  -d '{"name":"pyav", "birthDate":"2021-05-16T13:34:59.485+00:00"}' http://localhost:8080/jpa/users -H 'Content-Type: application/json' -X POST
+```
 ### Validation for the delete
 curl http://localhost:8080/jpa/users | python3 -m json.tool
 ```json
@@ -231,7 +246,7 @@ curl http://localhost:8080/jpa/users | python3 -m json.tool
 ]
 ```
 ## POST call
-Here is a POST call demo which creates a post for a user:
+Here is a demo for POST call which creates a post for a user:
 ```
 curl http://localhost:8080/jpa/users/200/posts -XPOST -d'{ "description": "My Post New" }' -H 'Content-Type: application/json'
 ```

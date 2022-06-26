@@ -28,6 +28,9 @@ public class UserJPAResource {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PostRepository postRepository;
 
 	Map<Integer, List<String>> userIdPostIdsMap = new HashMap<Integer, List<String>>();
 	Map<String, String> postIdPostMap = new HashMap<String, String>();
@@ -69,8 +72,8 @@ public class UserJPAResource {
 	}
 
 	@GetMapping("/jpa/users/{id}/posts")
-	public List<String> getPosts(@PathVariable Integer id) {
-		if (service.findOne(id) == null) {
+	public List<Post> getPosts(@PathVariable int id) {
+		/*if (service.findOne(id) == null) {
 			throw new UserNotFoundException("id - " + id + " not found");
 		}
 
@@ -80,12 +83,18 @@ public class UserJPAResource {
 			posts.add(postIdPostMap.get(i));
 		}
 
-		return posts;
+		return posts;*/
+		Optional<User> userOptional = userRepository.findById(id);
+		if (!userOptional.isPresent()) {
+			throw new UserNotFoundException("id: " + id);
+		}
+		return userOptional.get().getPosts();
 	}
 
 	@PostMapping("/jpa/users/{id}/posts")
-	public void addPost(@PathVariable Integer id, @RequestBody String post) {
-		if (service.findOne(id) == null) {
+	//public void addPost(@PathVariable Integer id, @RequestBody String post) {
+	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+		/*if (service.findOne(id) == null) {
 			throw new UserNotFoundException("id - " + id);
 		}
 
@@ -93,10 +102,20 @@ public class UserJPAResource {
 		postIdPostMap.put(uuid, post);
 		List<String> posts = userIdPostIdsMap.get(id);
 		posts.add(uuid);
-		userIdPostIdsMap.put(id, posts);
+		userIdPostIdsMap.put(id, posts);*/
+		Optional<User> userOptional = userRepository.findById(id);
+		if (!userOptional.isPresent()) {
+			throw new UserNotFoundException("id: " + id);
+		}
+		User user = userOptional.get();
+		post.setUser(user);
+		postRepository.save(post);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId())
+				.toUri();
+		return ResponseEntity.created(uri).build();
 	}
 
-	@GetMapping("/jpa/users/{id}/posts/{post_id}")
+	/*@GetMapping("/jpa/users/{id}/posts/{post_id}")
 	public String getPost(@PathVariable Integer id, @PathVariable Integer postId) {
 		if (service.findOne(id) == null) {
 			throw new UserNotFoundException("id - " + id + " not found");
@@ -111,6 +130,6 @@ public class UserJPAResource {
 		}
 
 		return postIdPostMap.get(String.valueOf(postId));
-	}
+	}*/
 
 }

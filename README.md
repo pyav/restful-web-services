@@ -220,7 +220,9 @@ curl -X DELETE http://localhost:8080/jpa/users/100
 curl -v  -d '{"name":"pyav", "birthDate":"2021-05-16T13:34:59.485+00:00"}' http://localhost:8080/jpa/users -H 'Content-Type: application/json' -X POST
 ```
 ### Validation for the delete
+```
 curl http://localhost:8080/jpa/users | python3 -m json.tool
+```
 ```json
 [
     {

@@ -265,3 +265,9 @@ Expose resources with proper URI but improper user of HTTP methods.
 Level 1 + proper user of HTTP methods.
 ### Level 3:
 Level 2 + HATEOAS i.e. Data + Next possible actions
+## Challenges with Microservices
+1. Bounded Context - not easy to define boundaries initially and may keep getting changed
+2. Configuration Management
+3. Dynamic scale up and scale down - load distribution
+4. Visibility - how to identify where a bug is, monitoring, etc.
+5. Pack of Cards - design well, have fault tolerance

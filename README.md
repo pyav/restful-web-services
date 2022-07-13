@@ -271,3 +271,6 @@ Level 2 + HATEOAS i.e. Data + Next possible actions
 3. Dynamic scale up and scale down - load distribution
 4. Visibility - how to identify where a bug is, monitoring, etc.
 5. Pack of Cards - design well, have fault tolerance
+## Introduction to Spring Cloud
+### Configuration Management
+

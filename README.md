@@ -276,3 +276,7 @@ Level 2 + HATEOAS i.e. Data + Next possible actions
 Multiple microservices, multiple environments and multiple instances in many of
 those environments. This means lot of configurations need to be managed.
  - Spring Cloud Config Server
+### Dynamic Scale Up and Scale Down
+ - Naming Server (Eureka)
+ - Ribbon (Client Side Load Balancing)
+ - Feign (Easier REST Clients)

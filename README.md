@@ -280,3 +280,6 @@ those environments. This means lot of configurations need to be managed.
  - Naming Server (Eureka)
  - Ribbon (Client Side Load Balancing)
  - Feign (Easier REST Clients)
+### Visibility and Monitoring
+ - Zipkin Distributed Tracing
+ - Netflix API Gateway

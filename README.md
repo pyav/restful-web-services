@@ -283,3 +283,5 @@ those environments. This means lot of configurations need to be managed.
 ### Visibility and Monitoring
  - Zipkin Distributed Tracing
  - Netflix API Gateway
+### Fault Tolerance
+ - Hystrix

@@ -285,3 +285,6 @@ those environments. This means lot of configurations need to be managed.
  - Netflix API Gateway
 ### Fault Tolerance
  - Hystrix
+## Spring Cloud Config Server
+Please check the project name "spring-cloud-config-server"
+
